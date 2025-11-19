@@ -13,131 +13,21 @@
 #define KEYS_R 5 6 7 8 9 15 16 17 18 19 25 26 27 28 29
 #define THUMBS 30 31 32 33 34 35
 
-&sk {
-    release-after-ms = <600>;
-    quick-release;
-};
+tapping-term-ms = <250>;
+         quick-tap-ms = <200>;};
 
-&sl { ignore-modifiers; };
-
-&mt { flavor = "tap-preferred"; };
-
-&lt {
-    flavor = "balanced";
-    tapping-term-ms = <200>;
-    quick-tap-ms = <175>;
-};
-
-&caps_word { /delete-property/ ignore-modifiers; };
+&lt { quick-tap-ms = <200>; };
 
 / {
-    behaviors {
-        hml: hml {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "balanced";
-            tapping-term-ms = <2000>;
-            quick-tap-ms = <175>;
-            require-prior-idle-ms = <250>;
-            hold-trigger-key-positions = <KEYS_R THUMBS>;
-            hold-trigger-on-release;
-            bindings = <&kp>, <&kp>;
-        };
-
-        hmr: hmr {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "balanced";
-            tapping-term-ms = <2000>;
-            quick-tap-ms = <175>;
-            require-prior-idle-ms = <250>;
-            hold-trigger-key-positions = <KEYS_L THUMBS>;
-            hold-trigger-on-release;
-            bindings = <&kp>, <&kp>;
-        };
-
-        hml_s: hml_s {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "balanced";
-            tapping-term-ms = <2000>;
-            quick-tap-ms = <175>;
-            require-prior-idle-ms = <0>;
-            hold-trigger-key-positions = <KEYS_R THUMBS>;
-            hold-trigger-on-release;
-            bindings = <&kp>, <&kp>;
-        };
-
-        hmr_s: hmr_s {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "balanced";
-            tapping-term-ms = <2000>;
-            quick-tap-ms = <175>;
-            require-prior-idle-ms = <0>;
-            hold-trigger-key-positions = <KEYS_L THUMBS>;
-            hold-trigger-on-release;
-            bindings = <&kp>, <&kp>;
-        };
-
-        smart_shift: smart_shift {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&sk LSHIFT>, <&caps_word>;
-
-            mods = <(MOD_LSFT)>;
-        };
-    };
-
     combos {
         compatible = "zmk,combos";
         timeout-ms = <20>;
         require-prior-idle-ms = <250>;
 
-        combo_reset_layer_left {
-            key-positions = <20 24>;
-            bindings = <&to 0>;
-        };
-
-        combo_reset_layer_right {
-            key-positions = <25 29>;
-            bindings = <&to 0>;
-        };
-
         combo_reset_central {
             key-positions = <32 33>;
             bindings = <&bootloader>;
             require-prior-idle-ms = <2000>;
-        };
-
-        combo_normal {
-            key-positions = <7 8>;
-            bindings = <&to 0>;
-        };
-
-        combo_fn {
-            key-positions = <27 28>;
-            bindings = <&sl 0>;
-        };
-
-        combo_genshin {
-            key-positions = <5 9>;
-            bindings = <&to 0>;
-        };
-
-        combo_esc {
-            key-positions = <1 2>;
-            bindings = <&kp ESCAPE>;
-        };
-
-        combo_tab {
-            key-positions = <2 3>;
-            bindings = <&kp TAB>;
-        };
-
-        combo_cdel {
-            key-positions = <11 12>;
-            bindings = <&kp LC(BACKSPACE)>;
         };
 
         combo_unlock {
@@ -182,10 +72,10 @@
 
         raise_layer {
             bindings = <
-&mt LEFT_GUI KP_NUM  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-&trans               &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-&trans               &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-                                     &trans  &trans  &trans    &trans  &trans
+&mt LEFT_GUI KP_NUM  &kp KP_SLASH     &kp KP_NUMBER_7  &kp KP_NUMBER_8  &kp KP_NUMBER_9  &kp KP_MINUS    &kp C_NEXT  &mt RC(HOME) HOME       &kp UP_ARROW    &kp PAGE_UP    &kp PRINTSCREEN  &kp CAPS
+&trans               &kp KP_MULTIPLY  &kp KP_NUMBER_4  &kp KP_NUMBER_5  &kp KP_NUMBER_6  &kp EQUAL       &kp C_PP    &kp LEFT_ARROW          &kp SCROLLLOCK  &kp RIGHT      &kp INSERT       &mt RIGHT_ALT K_APP
+&mt LCTRL KP_PLUS    &kp KP_NUMBER_0  &kp KP_NUMBER_1  &kp KP_NUMBER_2  &kp KP_NUMBER_3  &kp KP_DOT      &kp C_PREV  &mt RC(END) END         &kp DOWN        &kp PAGE_DOWN  &kp PAUSE_BREAK  &kp RCTRL
+                                                       &trans           &trans           &trans          &trans      &mt RIGHT_SHIFT DELETE
             >;
         };
     };
