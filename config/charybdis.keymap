@@ -36,9 +36,50 @@
             key-positions = <0 4>;
             bindings = <&studio_unlock>;
         };
+
+        ctrl_shift_esc {
+            bindings = <&kp LS(LC(ESCAPE))>;
+            key-positions = <0 1>;
+        };
+
+        ctrl_alt_del {
+            bindings = <&kp LC(LA(DELETE))>;
+            key-positions = <12 13>;
+        };
+
+        assig {
+            bindings = <&assignment>;
+            key-positions = <15 16>;
+        };
+
+        send_prm {
+            bindings = <&send_param>;
+            key-positions = <19 20>;
+        };
+
+        alt_print_scr {
+            bindings = <&kp LA(PRINTSCREEN)>;
+            key-positions = <16 17>;
+        };
     };
 
     chosen { zmk,physical-layout = &charybdis_6col_layout; };
+
+    macros {
+        assignment: assignment {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp COLON &kp EQUAL>;
+            label = "ASSIGNMENT";
+        };
+
+        send_param: send_param {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp EQUAL &kp GREATER_THAN>;
+            label = "SEND_PARAM";
+        };
+    };
 
     keymap {
         compatible = "zmk,keymap";

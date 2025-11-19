@@ -173,3 +173,13 @@ combos:
   k: BOOT LDR
 - p: [0, 4]
   k: ZMK Studio
+- p: [0, 1]
+  k: Sft+Ctl+ ESCAPE
+- p: [12, 13]
+  k: Ctl+Alt+ DELETE
+- p: [15, 16]
+  k: '&assignment'
+- p: [19, 20]
+  k: '&send_param'
+- p: [16, 17]
+  k: Alt+ PRINT SCREEN
