@@ -3,10 +3,10 @@
 
 #define DEF 0
 #define MOUSE 1
-#define SYM 2
-#define NUM 3
-#define FN 4
-#define GENSHIN 5 
+#define LOWER 2
+#define RAISE 3
+#define SCROLL 4
+#define SNIPE 5
 
 / {
   split_inputs {
@@ -23,21 +23,31 @@
     compatible = "zmk,input-listener";
     status = "disabled";
     device = <&trackball_split>;
+	
+	// Обработка идёт по порядку, и завершается первым сработавшим условием (если нет команды process-next;), указанные слои ищутся в стеке слоёв
 
     snipe {
-      layers = <NUM>;
+      layers = <SNIPE>;
       input-processors = <&zip_xy_scaler 1 3>;
     };
-
+	
     scroll {
-      layers = <FN>;
+      layers = <SCROLL>;
       input-processors = <&zip_xy_transform (INPUT_TRANSFORM_Y_INVERT)>, <&zip_xy_scaler 1 3>, <&zip_xy_to_scroll_mapper>;
     };
 
-    move {
-      layers = <DEF MOUSE>;
-      input-processors = <&auto_mouse_layer MOUSE 1000>;
+	move {
+      layers = <MOUSE>;
+	  // Автослой MOUSE на 1 секунду при движении трекбола
+	  // input-processors = <&auto_mouse_layer MOUSE 1000>;
     };
+
+    no_move {
+	  // Отключение движения трекболом в слоях
+      layers = <DEF LOWER RAISE>;
+      input-processors = <&zip_xy_scaler 0 1>;
+    };
+	
   };
 
   auto_mouse_layer: auto_mouse_layer {

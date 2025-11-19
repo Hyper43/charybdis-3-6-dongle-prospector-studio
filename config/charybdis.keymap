@@ -4,236 +4,154 @@
 
 #define BASE 0
 #define MOUSE 1
-#define SYMBOL 2
-#define NUMBER 3
-#define FUNCTION 4
-#define GAME 5
-#define RESET 6
-
-#define KEYS_L 0 1 2 3 4 10 11 12 13 14 20 21 22 23 24  
-#define KEYS_R 5 6 7 8 9 15 16 17 18 19 25 26 27 28 29
-#define THUMBS 30 31 32 33 34 35  
-
-&sk {
-  release-after-ms = <600>;
-  quick-release;
-};
-
-&sl {
-  ignore-modifiers;
-};
+#define LOWER 2
+#define RAISE 3
+#define SCROLL 4
+#define SNIPE 5
 
 &mt {
-  flavor = "tap-preferred";
+    tapping-term-ms = <300>;
+    quick-tap-ms = <200>;
 };
 
-&lt {
-  flavor = "balanced";
-  tapping-term-ms = <200>;
-  quick-tap-ms = <175>;
-};
-
-&caps_word {
-  /delete-property/ ignore-modifiers;
-};
+&lt { quick-tap-ms = <200>; };
 
 / {
-  behaviors {
-    hml: hml {
-      compatible = "zmk,behavior-hold-tap";
-      #binding-cells = <2>;
-      flavor = "balanced";
-      tapping-term-ms = <2000>;
-      quick-tap-ms = <175>;
-      require-prior-idle-ms = <250>;
-      hold-trigger-key-positions = <KEYS_R THUMBS>;
-      hold-trigger-on-release;
-      bindings =
-        <&kp>,
-        <&kp>;
+    combos {
+        compatible = "zmk,combos";
+        timeout-ms = <20>;
+        require-prior-idle-ms = <300>;
+
+        combo_reset_central {
+            key-positions = <32 33>;
+            bindings = <&bootloader>;
+            require-prior-idle-ms = <2000>;
+        };
+
+        combo_unlock {
+            key-positions = <0 4>;
+            bindings = <&studio_unlock>;
+        };
+
+        ctrl_shift_esc {
+            bindings = <&kp LS(LC(ESCAPE))>;
+            key-positions = <0 1>;
+        };
+
+        ctrl_alt_del {
+            bindings = <&kp LC(LA(DELETE))>;
+            key-positions = <12 13>;
+        };
+
+        assig {
+            bindings = <&assignment>;
+            key-positions = <15 16>;
+        };
+
+        send_prm {
+            bindings = <&send_param>;
+            key-positions = <19 20>;
+        };
+
+        alt_print_scr {
+            bindings = <&kp LA(PRINTSCREEN)>;
+            key-positions = <16 17>;
+        };
+
+        to_base {
+            bindings = <&to 0>;
+            key-positions = <40 39>;
+        };
     };
 
-    hmr: hmr {
-      compatible = "zmk,behavior-hold-tap";
-      #binding-cells = <2>;
-      flavor = "balanced";
-      tapping-term-ms = <2000>;
-      quick-tap-ms = <175>;
-      require-prior-idle-ms = <250>;
-      hold-trigger-key-positions = <KEYS_L THUMBS>;
-      hold-trigger-on-release;
-      bindings =
-        <&kp>,
-        <&kp>;
-    };
-    hml_s: hml_s {
-      compatible = "zmk,behavior-hold-tap";
-      #binding-cells = <2>;
-      flavor = "balanced";
-      tapping-term-ms = <2000>;
-      quick-tap-ms = <175>;
-      require-prior-idle-ms = <0>;
-      hold-trigger-key-positions = <KEYS_R THUMBS>;
-      hold-trigger-on-release;
-      bindings =
-        <&kp>,
-        <&kp>;
+    chosen { zmk,physical-layout = &charybdis_6col_layout; };
+
+    macros {
+        assignment: assignment {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp COLON &kp EQUAL>;
+            label = "ASSIGNMENT";
+        };
+
+        send_param: send_param {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp EQUAL &kp GREATER_THAN>;
+            label = "SEND_PARAM";
+        };
     };
 
-    hmr_s: hmr_s {
-      compatible = "zmk,behavior-hold-tap";
-      #binding-cells = <2>;
-      flavor = "balanced";
-      tapping-term-ms = <2000>;
-      quick-tap-ms = <175>;
-      require-prior-idle-ms = <0>;
-      hold-trigger-key-positions = <KEYS_L THUMBS>;
-      hold-trigger-on-release;
-      bindings =
-        <&kp>,
-        <&kp>;
+    behaviors {
+        no_pare_hold_tap: no_pare_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "NO_PARE_HOLD_TAP";
+            bindings = <&kp>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <300>;
+			require-prior-idle-ms = <300>;
+            flavor = "tap-preferred";
+        };
     };
 
+    keymap {
+        compatible = "zmk,keymap";
 
-    smart_shift: smart_shift {
-      compatible = "zmk,behavior-mod-morph";
-      #binding-cells = <0>;
-      bindings = <&sk LSHIFT>, <&caps_word>;
-      mods = <(MOD_LSFT)>;
-    };
-  };
+        Base {
+            display-name = "Base";
+            bindings = <
+&mt LEFT_GUI GRAVE   &kp Q    &kp W                      &kp E                      &kp R                      &kp T           &kp Y        &kp U                      &kp I      &kp O    &kp P          &kp LEFT_BRACKET
+&mt LEFT_ALT MINUS   &kp A    &kp S                      &kp D                      &kp F                      &kp G           &kp H        &kp J                      &kp K      &kp L    &kp SEMICOLON  &mt RIGHT_ALT SQT
+&mt LCTRL BACKSLASH  &lt 1 Z  &no_pare_hold_tap LC(X) X  &no_pare_hold_tap LC(C) C  &no_pare_hold_tap LC(V) V  &kp B           &kp N        &kp M                      &kp COMMA  &kp DOT  &lt 1 SLASH    &mt RCTRL RIGHT_BRACKET
+                                                         &lt 3 TAB                  &mt LEFT_SHIFT SPACE       &lt 2 ESCAPE    &lt 2 ENTER  &mt RIGHT_SHIFT BACKSPACE
+            >;
+        };
 
-  combos {
-    compatible = "zmk,combos";
-    timeout-ms = <20>;
-    require-prior-idle-ms = <250>;
+        Mouse {
+            display-name = "Mouse";
+            bindings = <
+&none         &none           &none      &none      &none      &none       &none  &none     &none     &none     &none            &none
+&kp LEFT_ALT  &kp LEFT_SHIFT  &none      &none      &mo 4      &none       &none  &mkp MB1  &mkp MB2  &mkp MB3  &kp RIGHT_SHIFT  &none
+&kp LCTRL     &mo 5           &kp LC(X)  &kp LC(V)  &kp LC(C)  &none       &none  &mo 4     &none     &none     &mo 5            &none
+                            &mkp MB1  &mkp MB2  &mkp MB3    &none  &none
+            >;
+        };
 
-    combo_reset_layer_left {
-      key-positions = <20 24>;
-      bindings = <&to RESET>;
-    };
-    combo_reset_layer_right {
-      key-positions = <25 29>;
-      bindings = <&to RESET>;
-    };
-    combo_reset_central {
-      key-positions = <32 33>;
-      bindings = <&bootloader>;
-      require-prior-idle-ms = <2000>;
-    };
-    combo_normal {
-      key-positions = <7 8>;
-      bindings = <&to BASE>;
-    };
-    combo_fn {
-      key-positions = <27 28>;
-      bindings = <&sl FUNCTION>;
-    };
-    combo_genshin {
-      key-positions = <5 9>;
-      bindings = <&to GAME>;
-    };
-    combo_esc {
-      key-positions = <1 2>;
-      bindings = <&kp ESCAPE>;
-    };
-    combo_tab {
-      key-positions = <2 3>;
-      bindings = <&kp TAB>;
-    };
-    combo_cdel {
-      key-positions = <11 12>;
-      bindings = <&kp LC(BACKSPACE)>;
-    };
-    combo_unlock {
-      key-positions = <0 4>;
-      bindings = <&studio_unlock>;
-    };
-  };
-  chosen {
-    zmk,physical-layout = &charybdis_6col_layout;
-  };
+        lower_layer {
+            bindings = <
+&mt LEFT_GUI F12   &kp F1           &kp F2        &kp F3        &kp F4        &kp F5         &kp F6        &kp F7                  &kp F8        &kp F9                &kp F10                &kp F11
+&trans             &kp EXCLAMATION  &kp AT_SIGN   &kp HASH      &kp DOLLAR    &kp PERCENT    &kp CARET     &kp AMPERSAND           &kp ASTERISK  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &mt RIGHT_ALT EQUAL
+&mt LCTRL KP_PLUS  &kp NUMBER_1     &kp NUMBER_2  &kp NUMBER_3  &kp NUMBER_4  &kp N5         &kp NUMBER_6  &kp NUMBER_7            &kp NUMBER_8  &kp NUMBER_9          &kp N0                 &kp RCTRL
+                                                  &trans        &trans        &trans         &trans        &mt RIGHT_SHIFT DELETE
+            >;
+        };
 
-  keymap {
-    compatible = "zmk,keymap";
+        raise_layer {
+            bindings = <
+&mt LEFT_GUI KP_NUM  &kp KP_SLASH     &kp KP_NUMBER_7  &kp KP_NUMBER_8  &kp KP_NUMBER_9  &kp KP_MINUS    &kp C_NEXT  &mt RC(HOME) HOME       &kp UP_ARROW    &kp PAGE_UP    &kp PRINTSCREEN  &kp CAPS
+&trans               &kp KP_MULTIPLY  &kp KP_NUMBER_4  &kp KP_NUMBER_5  &kp KP_NUMBER_6  &kp EQUAL       &kp C_PP    &kp LEFT_ARROW          &kp SCROLLLOCK  &kp RIGHT      &kp INSERT       &mt RIGHT_ALT K_APP
+&mt LCTRL KP_PLUS    &kp KP_NUMBER_0  &kp KP_NUMBER_1  &kp KP_NUMBER_2  &kp KP_NUMBER_3  &kp KP_DOT      &kp C_PREV  &mt RC(END) END         &kp DOWN        &kp PAGE_DOWN  &kp PAUSE_BREAK  &kp RCTRL
+                                                       &trans           &trans           &trans          &trans      &mt RIGHT_SHIFT DELETE
+            >;
+        };
 
-    Base {
-      display-name = "Base";
-      bindings = <
-        &lt FUNCTION ESCAPE   &kp Q        &kp W        &kp E           &kp R        &kp T                     &kp Y                &kp U                      &kp I          &kp O         &kp P            &trans
-        &kp TAB           &hml LGUI A  &hml LALT S  &hml LSHFT D    &hml LCTRL F &kp G                     &kp H                &hmr RCTRL J               &hmr RSHFT K   &hmr RALT L   &hmr LGUI SEMI   &trans
-        &kp LSHFT         &kp Z        &mt LC(X) X  &mt LC(C) C     &kp V        &mt LC(V) B               &kp N                &kp M                      &kp COMMA      &kp DOT       &kp FSLH         &trans
-                                       &kp LCTRL    &mo 2     &mt LGUI RET          &lt NUMBER SPACE       &kp BSPC
-      >;
-    };
+        scroll {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+                        &trans  &trans  &trans    &trans  &trans
+            >;
+        };
 
-    Mouse {
-      display-name = "Mouse";
-      bindings = <
-        &trans   &trans   &trans   &trans    &trans    &trans            &trans &trans   &trans   &trans   &trans     &trans 
-        &trans   &kp LGUI &kp LALT &kp LSHFT &kp LCTRL &trans            &trans &mkp MB1 &mkp MB2 &mkp MB3 &trans     &trans
-        &trans   &trans   &trans   &mo 3     &mo 2     &trans            &trans &trans   &trans   &trans   &trans     &trans
-                          &mkp MB1  &mkp MB2  &mkp MB3          &trans &trans 
-      >;
+        snipe {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+                        &trans  &trans  &trans    &trans  &trans
+            >;
+        };
     };
-
-    Sym {
-      display-name = "Symbol";
-      bindings = <
-        &trans &none &none &kp LEFT_BRACE       &kp RIGHT_BRACE       &kp PIPE              &kp GRAVE &kp TILDE &kp LESS_THAN &kp GREATER_THAN &kp BACKSLASH        &trans
-        &trans &none &none &kp LEFT_PARENTHESIS &kp RIGHT_PARENTHESIS &kp COLON             &kp PLUS  &kp MINUS &kp SLASH     &kp ASTRK        &kp SINGLE_QUOTE     &trans
-        &trans &none &none &kp LEFT_BRACKET     &kp RIGHT_BRACKET     &kp QUESTION          &kp AMPS  &kp EQUAL &kp UNDER     &kp PERIOD       &kp DOUBLE_QUOTES    &trans
-                    &none                &none                 &trans                &none     &none                                                                     
-      >;
-    };
-
-    Num {
-      display-name = "Number";
-      bindings = <
-        &trans   &none    &kp N7         &kp N8          &kp N9          &none                  &none         &kp PG_UP         &kp UP            &kp PG_DN         &none          &trans
-        &trans   &kp LGUI &hml_s LALT N4 &hml_s LSHFT N5 &hml_s LCTRL N6 &none                  &none         &hmr_s RCTRL LEFT &hmr_s RSHFT DOWN &hmr_s RALT RIGHT &kp RGUI       &trans
-        &trans   &none    &kp N1         &kp N2          &kp N3          &kp LC(MINUS)          &kp LC(EQUAL) &kp HOME          &trans            &kp END           &none          &trans
-                                &kp DOT         &kp N0          &kp SPACE              &trans        &none
-      >;
-    };
-
-    Fun {
-      display-name = "Function";
-      bindings = <
-        &trans    &kp LC(LA(DEL)) &kp F7 &kp F8 &kp F9 &kp F10          &none &none     &none     &none    &none      &trans        
-        &trans    &none           &kp F4 &kp F5 &kp F6 &kp F11          &none &kp LCTRL &kp LSHFT &kp LALT &kp LGUI   &trans     
-        &trans    &none           &kp F1 &kp F2 &kp F3 &kp F12          &none &none     &none     &none    &none      &trans
-                               &none  &none  &none            &none &none
-      >;
-    };
-
-    Button {
-      display-name = "Game";
-      bindings = <
-        &kp ESCAPE &kp ESCAPE &kp Q &kp W    &kp E     &kp R          &none  &none    &none    &none    &none   &trans   
-        &trans &kp LCTRL  &kp A &kp S    &kp D     &kp F          &none  &mkp MB1 &mkp MB2 &mkp MB3 &none   &trans 
-        &trans &kp LSHIFT &kp Z &kp X    &kp C     &kp V          &kp N1 &kp N2   &kp N3   &kp N4   &kp N5  &trans
-                         &kp LALT &kp SPACE &kp M          &kp T  &kp B                      
-      >;
-    };
-
-    Reset {
-      display-name = "Reset";
-      bindings = <
-        &trans &none &none &none &none &none                &none &none &none &none &none &trans      
-        &trans &none &none &none &none &none                &none &none &none &none &none &trans   
-        &trans &none &none &none &none &none                &none &none &none &none &none &trans
-                    &none &none &bootloader          &bootloader &none                
-      >;
-    };
-  };
 };
-
-
-
-
-
-
-
-
-
