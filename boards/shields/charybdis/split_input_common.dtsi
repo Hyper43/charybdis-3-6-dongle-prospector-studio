@@ -24,9 +24,9 @@
     status = "disabled";
     device = <&trackball_split>;
 	
-	move {
+	no_move {
       layers = <DEF LOWER RAISE>;
-      input-processors = <&zip_xy_scaler 0 1>;
+      input-processors = <&zip_xy_scaler 1 999>;
     };
 
     snipe {
