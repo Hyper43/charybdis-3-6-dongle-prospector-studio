@@ -41,6 +41,7 @@
 
     move {
       layers = <MOUSE>;
+	  input-processors = <&zip_xy_scaler 1 1>;
     };
   };
 

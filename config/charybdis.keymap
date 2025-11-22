@@ -111,8 +111,8 @@
             display-name = "Mouse";
             bindings = <
 &none         &none  &none  &none     &none     &none       &none  &none     &none     &none     &none  &none
-&kp LEFT_ALT  &mo 5  &none  &none     &none     &none       &none  &mkp MB1  &mkp MB2  &mkp MB3  &mo 5  &none
-&kp LCTRL     &none  &none  &none     &mo 4     &none       &none  &mo 4     &none     &none     &none  &none
+&kp LEFT_ALT  &none  &none  &none     &none     &none       &none  &mkp MB1  &mkp MB2  &mkp MB3  &none  &none
+&kp LCTRL     &mo 5  &none  &none     &mo 4     &none       &none  &mo 4     &none     &none     &mo 5  &none
                             &mkp MB1  &mkp MB2  &mkp MB3    &none  &none
             >;
         };

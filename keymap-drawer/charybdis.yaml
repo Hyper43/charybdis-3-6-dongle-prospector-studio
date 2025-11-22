@@ -56,7 +56,7 @@ layers:
   - ''
   - ''
   - LEFT ALT
-  - snipe
+  - ''
   - ''
   - ''
   - ''
@@ -65,10 +65,10 @@ layers:
   - '&mkp MB1'
   - '&mkp MB2'
   - '&mkp MB3'
-  - snipe
+  - ''
   - ''
   - LCTRL
-  - {type: held}
+  - {t: snipe, type: held}
   - ''
   - ''
   - scroll
@@ -77,7 +77,7 @@ layers:
   - scroll
   - ''
   - ''
-  - ''
+  - snipe
   - ''
   - '&mkp MB1'
   - '&mkp MB2'
@@ -224,7 +224,7 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {type: held}
+  - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
