@@ -23,11 +23,6 @@
     compatible = "zmk,input-listener";
     status = "disabled";
     device = <&trackball_split>;
-	
-	no_move {
-      layers = <DEF LOWER RAISE>;
-      input-processors = <&zip_xy_scaler 1 999>;
-    };
 
     snipe {
       layers = <SNIPE>;
@@ -41,7 +36,6 @@
 
     move {
       layers = <MOUSE>;
-	  input-processors = <&zip_xy_scaler 1 1>;
     };
   };
 
