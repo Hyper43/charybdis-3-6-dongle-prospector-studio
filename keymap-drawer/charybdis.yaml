@@ -14,7 +14,7 @@ layers:
   - P
   - '['
   - {t: '-', h: LEFT ALT}
-  - {t: A, h: Mouse}
+  - A
   - S
   - D
   - F
@@ -23,10 +23,10 @@ layers:
   - J
   - K
   - L
-  - {t: ;, h: Mouse}
+  - ;
   - {t: '''', h: RIGHT ALT}
   - {t: \, h: LCTRL}
-  - Z
+  - {t: Z, h: Mouse}
   - {t: X, h: Ctl+ X}
   - {t: C, h: Ctl+ C}
   - {t: V, h: Ctl+ V}
@@ -35,7 +35,7 @@ layers:
   - M
   - ','
   - .
-  - /
+  - {t: /, h: Mouse}
   - {t: ']', h: RCTRL}
   - {t: TAB, h: raise}
   - {t: SPACE, h: LEFT SHIFT}
@@ -56,7 +56,7 @@ layers:
   - ''
   - ''
   - LEFT ALT
-  - {t: snipe, type: held}
+  - snipe
   - ''
   - ''
   - ''
@@ -68,7 +68,7 @@ layers:
   - snipe
   - ''
   - LCTRL
-  - ''
+  - {type: held}
   - ''
   - ''
   - scroll
@@ -182,19 +182,19 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
   - {type: held}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {type: held}
@@ -236,7 +236,7 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
+  - {type: held}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
