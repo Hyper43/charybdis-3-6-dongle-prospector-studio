@@ -24,7 +24,7 @@
     status = "disabled";
     device = <&trackball_split>;
 	
-	no_move {
+	move {
       layers = <DEF LOWER RAISE>;
       input-processors = <&zip_xy_scaler 0 1>;
     };
