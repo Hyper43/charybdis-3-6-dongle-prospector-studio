@@ -66,24 +66,24 @@ layers:
   - '&mkp MB2'
   - '&mkp MB3'
   - RIGHT SHIFT
-  - ''
+  - RIGHT ALT
   - LCTRL
   - {t: snipe, type: held}
   - Ctl+ X
-  - Ctl+ V
   - Ctl+ C
+  - Ctl+ V
   - ''
   - ''
   - scroll
   - ''
   - ''
   - snipe
-  - ''
+  - RCTRL
   - '&mkp MB1'
   - '&mkp MB2'
   - '&mkp MB3'
-  - ''
-  - ''
+  - ENTER
+  - DELETE
   lower:
   - {t: DEV TOOLS, h: LEFT GUI}
   - F1

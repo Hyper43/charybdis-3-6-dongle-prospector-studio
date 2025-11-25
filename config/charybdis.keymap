@@ -83,14 +83,14 @@
     };
 
     behaviors {
-        no_pare_hold_tap: no_pare_hold_tap {
+        np_ht: np_ht {
             compatible = "zmk,behavior-hold-tap";
-            label = "NO_PARE_HOLD_TAP";
+            label = "NP_HT";
             bindings = <&kp>, <&kp>;
 
             #binding-cells = <2>;
             tapping-term-ms = <300>;
-			require-prior-idle-ms = <300>;
+            require-prior-idle-ms = <300>;
             flavor = "tap-preferred";
         };
     };
@@ -101,20 +101,20 @@
         Base {
             display-name = "Base";
             bindings = <
-&mt LEFT_GUI GRAVE   &kp Q    &kp W                      &kp E                      &kp R                      &kp T           &kp Y        &kp U                      &kp I      &kp O    &kp P          &kp LEFT_BRACKET
-&mt LEFT_ALT MINUS   &kp A    &kp S                      &kp D                      &kp F                      &kp G           &kp H        &kp J                      &kp K      &kp L    &kp SEMICOLON  &mt RIGHT_ALT SQT
-&mt LCTRL BACKSLASH  &lt 1 Z  &no_pare_hold_tap LC(X) X  &no_pare_hold_tap LC(C) C  &no_pare_hold_tap LC(V) V  &kp B           &kp N        &kp M                      &kp COMMA  &kp DOT  &lt 1 SLASH    &mt RCTRL RIGHT_BRACKET
-                                                         &lt 3 TAB                  &mt LEFT_SHIFT SPACE       &lt 2 ESCAPE    &lt 2 ENTER  &mt RIGHT_SHIFT BACKSPACE
+&mt LEFT_GUI GRAVE   &kp Q    &kp W           &kp E           &kp R                 &kp T           &kp Y        &kp U                      &kp I      &kp O    &kp P          &kp LEFT_BRACKET
+&mt LEFT_ALT MINUS   &kp A    &kp S           &kp D           &kp F                 &kp G           &kp H        &kp J                      &kp K      &kp L    &kp SEMICOLON  &mt RIGHT_ALT SQT
+&mt LCTRL BACKSLASH  &lt 1 Z  &np_ht LC(X) X  &np_ht LC(C) C  &np_ht LC(V) V        &kp B           &kp N        &kp M                      &kp COMMA  &kp DOT  &lt 1 SLASH    &mt RCTRL RIGHT_BRACKET
+                                              &lt 3 TAB       &mt LEFT_SHIFT SPACE  &lt 2 ESCAPE    &lt 2 ENTER  &mt RIGHT_SHIFT BACKSPACE
             >;
         };
 
         Mouse {
             display-name = "Mouse";
             bindings = <
-&none         &none           &none      &none      &none      &none       &none  &none     &none     &none     &none            &none
-&kp LEFT_ALT  &kp LEFT_SHIFT  &none      &none      &mo 4      &none       &none  &mkp MB1  &mkp MB2  &mkp MB3  &kp RIGHT_SHIFT  &none
-&kp LCTRL     &mo 5           &kp LC(X)  &kp LC(V)  &kp LC(C)  &none       &none  &mo 4     &none     &none     &mo 5            &none
-                            &mkp MB1  &mkp MB2  &mkp MB3    &none  &none
+&none         &none           &none      &none      &none      &none       &none      &none       &none     &none     &none            &none
+&kp LEFT_ALT  &kp LEFT_SHIFT  &none      &none      &mo 4      &none       &none      &mkp MB1    &mkp MB2  &mkp MB3  &kp RIGHT_SHIFT  &kp RIGHT_ALT
+&kp LCTRL     &mo 5           &kp LC(X)  &kp LC(C)  &kp LC(V)  &none       &none      &mo 4       &none     &none     &mo 5            &kp RCTRL
+                                         &mkp MB1   &mkp MB2   &mkp MB3    &kp ENTER  &kp DELETE
             >;
         };
 
