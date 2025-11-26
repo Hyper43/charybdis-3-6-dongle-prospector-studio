@@ -57,11 +57,6 @@
             bindings = <&kp LA(PRINTSCREEN)>;
             key-positions = <16 17>;
         };
-
-        to_base {
-            bindings = <&to 0>;
-            key-positions = <40 39>;
-        };
     };
 
     chosen { zmk,physical-layout = &charybdis_6col_layout; };
@@ -79,6 +74,13 @@
             #binding-cells = <0>;
             bindings = <&kp EQUAL &kp GREATER_THAN>;
             label = "SEND_PARAM";
+        };
+
+        B2B: B2B {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LS(B) &kp N2 &kp LS(B)>;
+            label = "B2B";
         };
     };
 
@@ -111,10 +113,10 @@
         Mouse {
             display-name = "Mouse";
             bindings = <
-&none         &none           &none      &none      &none      &none       &none      &none       &none     &none     &none            &none
-&kp LEFT_ALT  &kp LEFT_SHIFT  &none      &none      &mo 4      &none       &none      &mkp MB1    &mkp MB2  &mkp MB3  &kp RIGHT_SHIFT  &kp RIGHT_ALT
-&kp LCTRL     &mo 5           &kp LC(X)  &kp LC(C)  &kp LC(V)  &none       &none      &mo 4       &none     &none     &mo 5            &kp RCTRL
-                                         &mkp MB1   &mkp MB2   &mkp MB3    &kp ENTER  &kp DELETE
+&none         &none           &none      &none      &none      &key_repeat    &none      &none       &none     &none     &none            &none
+&kp LEFT_ALT  &kp LEFT_SHIFT  &none      &none      &mo 4      &none          &none      &mkp MB1    &mkp MB2  &mkp MB3  &kp RIGHT_SHIFT  &kp RIGHT_ALT
+&kp LCTRL     &mo 5           &kp LC(X)  &kp LC(C)  &kp LC(V)  &none          &none      &mo 4       &none     &none     &mo 5            &kp RCTRL
+                                         &mkp MB1   &mkp MB2   &mkp MB3       &kp ENTER  &kp DELETE
             >;
         };
 

@@ -48,7 +48,7 @@ layers:
   - ''
   - ''
   - ''
-  - ''
+  - '&key_repeat'
   - ''
   - ''
   - ''
@@ -267,5 +267,3 @@ combos:
   k: '&send_param'
 - p: [16, 17]
   k: Alt+ PRINT SCREEN
-- p: [40, 39]
-  k: {t: Base, h: toggle}
