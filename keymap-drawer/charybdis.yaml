@@ -123,7 +123,7 @@ layers:
   - RCTRL
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {type: held}
+  - {t: admin, type: held}
   - {t: ▽, type: trans}
   - {t: DELETE, h: RIGHT SHIFT}
   raise:
@@ -252,6 +252,48 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
+  admin:
+  - OUT TOG
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - BT CLR
+  - {t: BT, h: '0'}
+  - {t: BT, h: '1'}
+  - {t: BT, h: '2'}
+  - {t: BT, h: '3'}
+  - {t: BT, h: '4'}
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - {type: held}
+  - ''
+  - ''
 combos:
 - p: [32, 33]
   k: BOOT LDR
@@ -267,3 +309,5 @@ combos:
   k: '&send_param'
 - p: [16, 17]
   k: Alt+ PRINT SCREEN
+- p: [29, 28]
+  k: '&B2B'
