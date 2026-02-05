@@ -70,12 +70,6 @@
             key-positions = <39 40>;
             layers = <0>;
         };
-
-        base_layer {
-            bindings = <&to 0>;
-            key-positions = <39 40>;
-            layers = <1>;
-        };
     };
 
     chosen { zmk,physical-layout = &charybdis_6col_layout; };
