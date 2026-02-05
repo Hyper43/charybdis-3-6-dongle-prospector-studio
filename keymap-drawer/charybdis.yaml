@@ -311,3 +311,9 @@ combos:
   k: Alt+ PRINT SCREEN
 - p: [29, 28]
   k: '&B2B'
+- p: [39, 40]
+  k: {t: Mouse, h: toggle}
+  l: [Base]
+- p: [39, 40]
+  k: {t: Base, h: toggle}
+  l: [Mouse]
